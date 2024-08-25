@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Text</title>
+<style>
+    body{
+      border: solid 5px red;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    body:hover{
+      box-shadow: 0 0 29px red;
+    }
+    .container {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+    .animated-text {
+        display: inline-block;
+        font-size: 36px;
+        color: #000;
+        animation: changeColor 1s infinite alternate;
+    }
+    @keyframes changeColor {
+        from { color: red; }
+        to { color: blue; }
+    }
+    .bottom-text {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+    button{
+      background-color: blue;
+      color: #fff;
+      padding: 10px 23px;
+      border: none;
+      border-radius: 5px;
+      font-size: 17px;
+    }
+    button:hover{
+      background-color: rgb(72 88 255);
+    }
+    button:active{
+      background-color: rgb(255 88 255);
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div id="text"></div>
+    <button id="start">Start</button>
+    <button id="next">Next</button>
+</div>
+<div class="bottom-text" id="bottom-text"></div>
+<br>
+<button id="ok" onclick="animateText()">ጀምር</button>
+
+<script>
+    const phrases = ['መኖር ደስ ይላል', 'World', 'Welcome', 'To', 'The', 'Animated', 'Text', 'Hero'];
+    let index = 0;
+    
+    const textElement = document.getElementById('text');
+    const bottomTextElement = document.getElementById('bottom-text');
+
+    document.getElementById('start').addEventListener('click', function() {
+        index = 0;
+        textElement.textContent = phrases[index];
+    });
+
+    document.getElementById('next').addEventListener('click', function() {
+        index++;
+        if(index < phrases.length) {
+            textElement.textContent = phrases[index];
+        } else {
+            index = 0;
+            textElement.textContent = phrases[index];
+        }
+    });
+
+    function animateText() {
+        const animatedText = document.createElement('span');
+        animatedText.classList.add('animated-text');
+        animatedText.textContent = 'ፍቅር';
+        bottomTextElement.innerHTML = '';
+        bottomTextElement.appendChild(animatedText);
+    }
+</script>
+</body>
+</html>
